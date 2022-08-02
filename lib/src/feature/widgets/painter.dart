@@ -11,8 +11,10 @@ class Painter extends StatefulWidget {
   State<Painter> createState() => _PainterState();
 }
 
-class _PainterState extends State<Painter> {
-  List<Particle> particles = [];
+class _PainterState extends State<Painter> with SingleTickerProviderStateMixin {
+  late Animation<double> animation;
+  late AnimationController controller;
+  late List<Particle> particles;
   Random rgn = Random(DateTime.now().millisecondsSinceEpoch);
   double maxRadius = 6;
   double maxSpeed = 0.2;
@@ -29,7 +31,24 @@ class _PainterState extends State<Painter> {
   @override
   void initState() {
     super.initState();
-    particles = List.generate(100, (index) {
+
+    controller = AnimationController(
+        duration: const Duration(seconds: 100), vsync: this);
+    animation = Tween<double>(begin: 0, end: 300).animate(controller)
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          controller.repeat();
+        } else if (status == AnimationStatus.dismissed) {
+          controller.forward();
+        }
+      });
+
+    controller.forward();
+
+    particles = List.generate(200, (index) {
       var p = Particle();
       p.color = getRandomColor(rgn);
       p.position = const Offset(-1, -1);
@@ -44,9 +63,16 @@ class _PainterState extends State<Painter> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomPaint(
-        painter: PainterCanvas(particles: particles, rgn: rgn),
+        painter: PainterCanvas(
+            particles: particles, rgn: rgn, animationValue: animation.value),
         child: Container(),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

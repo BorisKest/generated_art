@@ -9,8 +9,12 @@ Offset PolarToCartesian(double speed, double theta) {
 
 class PainterCanvas extends CustomPainter {
   List<Particle> particles;
+  late double animationValue;
   Random rgn;
-  PainterCanvas({required this.rgn, required this.particles});
+  PainterCanvas(
+      {required this.rgn,
+      required this.particles,
+      required double animationValue});
 
   @override
   void paint(Canvas canvas, Size size) {
