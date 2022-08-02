@@ -20,8 +20,8 @@ class PainterCanvas extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     for (var p in particles) {
       var velocity = PolarToCartesian(p.speed, p.theta);
-      var dx = p.position.dx * velocity.dx;
-      var dy = p.position.dy * velocity.dy;
+      var dx = p.position.dx + velocity.dx;
+      var dy = p.position.dy + velocity.dy;
 
       if (p.position.dx < 0 || p.position.dx > size.width) {
         dx = rgn.nextDouble() * size.width;
@@ -34,14 +34,14 @@ class PainterCanvas extends CustomPainter {
 
     for (var p in particles) {
       var paint = Paint();
-      paint.color = Colors.red;
+      paint.color = Colors.blueAccent;
       canvas.drawCircle(p.position, p.radius, paint);
     }
     //
   }
 
   @override
-  bool shouldRepaint(CustomPainter o) {
+  bool shouldRepaint(CustomPainter oldDelegate) {
     return true;
   }
 }
