@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:generated_art/src/feature/widgets/painter.dart';
+import 'package:generated_art/src/feature/services/app_router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +10,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppRouter _appRouter = AppRouter();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Painter(),
+      onGenerateRoute: _appRouter.onGenerateRoute,
     );
   }
 }
