@@ -14,6 +14,10 @@ class DrawerWidget extends StatelessWidget {
             title: Text('Bubbles'),
             onTap: () => Navigator.of(context).pushReplacementNamed('/home'),
           ),
+          ListTile(
+            title: Text('OW'),
+            onTap: () => Navigator.of(context).pushReplacementNamed('/ow'),
+          ),
         ],
       ),
     );
