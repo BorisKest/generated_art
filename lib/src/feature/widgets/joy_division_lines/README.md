@@ -1,0 +1,1 @@
+This type of generative art it'i's the reasan why i doing it. I realy like lines.

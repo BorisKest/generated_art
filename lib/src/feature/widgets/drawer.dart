@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({Key? key}) : super(key: key);
@@ -11,12 +9,16 @@ class DrawerWidget extends StatelessWidget {
       child: ListView(
         children: [
           ListTile(
-            title: Text('Bubbles'),
+            title: const Text('Bubbles'),
             onTap: () => Navigator.of(context).pushReplacementNamed('/home'),
           ),
           ListTile(
-            title: Text('OW'),
+            title: const Text('OW'),
             onTap: () => Navigator.of(context).pushReplacementNamed('/ow'),
+          ),
+          ListTile(
+            title: const Text('Lines'),
+            onTap: () => Navigator.of(context).pushReplacementNamed('/lines'),
           ),
         ],
       ),

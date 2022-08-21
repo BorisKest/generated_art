@@ -37,7 +37,7 @@ class _PainterState extends State<Painter> with SingleTickerProviderStateMixin {
         AnimationController(duration: const Duration(seconds: 10), vsync: this);
     animation = Tween<double>(begin: 0, end: 300).animate(controller)
       ..addListener(() {
-        if (this.particles.length == 0 || this.particles.length == 1) {
+        if (particles.length == 0 || particles.length == 1) {
           // create
           createBlobField();
         } else {
@@ -87,14 +87,14 @@ class _PainterState extends State<Painter> with SingleTickerProviderStateMixin {
   void createBlobField() {
     final size = MediaQuery.of(context).size;
     final o = Offset(size.width / 2, size.height / 2); // center of the screen
-    final n = 5;
+    const n = 5;
     final r = size.width / n;
-    final a = 0.2;
+    const a = 0.2;
     blobField(r, n, a, o);
   }
 
   void blobField(double r, int n, double a, Offset o) {
-    this.particles.add(Particle()
+    particles.add(Particle()
       ..radius = r
       ..position = o
       ..color = Colors.red);

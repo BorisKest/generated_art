@@ -2,8 +2,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:generated_art/src/feature/widgets/drawer.dart';
 import 'package:generated_art/src/feature/widgets/other_worldly/models/ow_models.dart';
 import 'package:generated_art/src/feature/widgets/other_worldly/ow_painter.dart';
@@ -24,13 +22,13 @@ class _OWAnimationState extends State<OWAnimation> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 1)).then(
+    Future.delayed(const Duration(seconds: 1)).then(
       ((value) async {
         for (int i = 0; i < 2000000; i++) {
           setState(() {
             iter = iter + 0.00001;
           });
-          await Future.delayed(Duration(milliseconds: 50));
+          await Future.delayed(const Duration(milliseconds: 50));
         }
       }),
     );
@@ -40,10 +38,11 @@ class _OWAnimationState extends State<OWAnimation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          child: CustomPaint(
-        painter: DemoPainter(iter, colors),
-        child: Container(),
-      )),
+        child: CustomPaint(
+          painter: DemoPainter(iter, colors),
+          child: Container(),
+        ),
+      ),
       drawer: const DrawerWidget(),
     );
   }
